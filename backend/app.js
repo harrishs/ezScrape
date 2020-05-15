@@ -22,7 +22,7 @@ mongoose
     { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then((result) => {
-    app.listen(3000);
+    app.listen(3030);
     console.log("connected");
   })
   .catch((err) => {
