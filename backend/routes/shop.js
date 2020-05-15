@@ -10,4 +10,8 @@ router.get("/restaurant/:id", shopController.getRestaurant);
 
 router.post("/add-restaurant", shopController.postAddRestaurant);
 
+router.post("/restaurant/:id", shopController.postEditRestaurant);
+
+router.post("/delete-restaurant", shopController.postDeleteRestaurant);
+
 module.exports = router;

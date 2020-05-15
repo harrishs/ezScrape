@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Tools</title>
+  </head>
+  <body>
+    <main>
+      <div class="restaurants">
+        <% restaurants.forEach(restaurant => { %>
+        <div class="restaurant-card">
+          <div class="restaurant-icon">
+            <img
+              src="<%= restaurant.imageUrl %>"
+              alt="<%= restaurant.name %> picture"
+            />
+          </div>
+          <h1><%= restaurant.name %></h1>
+          <p><%= restaurant.type %></p>
+          <p><%= restaurant.description %></p>
+          <a href="/restaurant/<%= restaurant._id %>"
+            ><button class="btn">Edit</button></a
+          >
+          <form action="/delete-restaurant" method="POST">
+            <button type="submit" class="btn">Delete</button>
+            <input type="hidden" value="<%= restaurant._id %>" name="id" />
+          </form>
+        </div>
+        <% }); %>
+      </div>
+      <div class="add-restaurant">
+        <form action="/add-restaurant" method="POST">
+          <label for="name">Name</label>
+          <input type="text" name="name" placeholder="Name" />
+          <label for="type">Categories</label>
+          <input
+            type="text"
+            name="type"
+            placeholder="Use commas to seperate multiple"
+          />
+          <label for="description">Description</label>
+          <input type="text" name="description" placeholder="Description" />
+          <label for="imageUrl">Image Url</label>
+          <input type="text" name="imageUrl" placeholder="Image Url" />
+          <button class="btn" type="submit">
+            Add
+          </button>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
