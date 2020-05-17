@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+
+const saltRounds = 10;
 
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
@@ -15,22 +14,32 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  address: {
-    street: {
-      type: String,
-      required: true,
-    },
-    country: {
-      type: String,
-      required: true,
-    },
-    postalCode: {
-      type: String,
-      required: true,
-    },
-    type: Object,
-    required: true,
-  },
 });
+
+userSchema.pre("save", function (next) {
+  if (this.isNew || this.isModified("password")) {
+    const document = this;
+    bcrypt.hash(document.password, saltRounds, function (err, hashedPassword) {
+      if (err) {
+        next(err);
+      } else {
+        document.password = hashedPassword;
+        next();
+      }
+    });
+  } else {
+    next();
+  }
+});
+
+userSchema.methods.isCorrectPassword = function (password, cb) {
+  bcrypt.comparte(password, this.password, function (err, same) {
+    if (err) {
+      cb(err);
+    } else {
+      cb(err, same);
+    }
+  });
+};
 
 module.exports = mongoose.model("User", userSchema);

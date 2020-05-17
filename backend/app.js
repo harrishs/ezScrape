@@ -12,6 +12,7 @@ app.use(cors());
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+const token = process.env.TOKEN_KEY;
 const apiRoutes = require("./routes/api");
 const shopRoutes = require("./routes/shop");
 const userRoutes = require("./routes/user");
