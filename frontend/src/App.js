@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import { Route, Switch } from "react-router-dom";
 
 import Auth from "./components/Auth/Auth";
 import Layout from "./components/Layout/Layout";
+import Landing from "./components/UI/Landing/Landing";
 
 function App() {
   // const [error, setError] = useState(null);
@@ -48,21 +50,32 @@ function App() {
   //     );
   //   });
   // }
-
   return (
     <div className="App">
-      {/* <Auth
-        url="http://localhost:3030/users/add-user"
-        type="signup"
-        method="POST"
-      />
-      <Auth
-        url="http://localhost:3030/users/auth-user"
-        type="login"
-        method="POST"
-      /> */}
       <Layout>
-        <p>test</p>
+        <Switch>
+          <Route
+            path="/login"
+            render={(props) => (
+              <Auth
+                url="http://localhost:3030/users/auth-user"
+                type="login"
+                method="POST"
+              />
+            )}
+          />
+          <Route
+            path="/signup"
+            render={(props) => (
+              <Auth
+                url="http://localhost:3030/users/add-user"
+                type="signup"
+                method="POST"
+              />
+            )}
+          />
+          <Route path="/" exact component={Landing} />
+        </Switch>
       </Layout>
     </div>
   );

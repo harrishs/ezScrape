@@ -2,13 +2,13 @@
   margin: 10px 0;
   box-sizing: border-box;
   display: block;
-  width: 100%;
+  width: 100px;
 }
 
 .NavItem a {
-  color: white;
+  color: black;
+  font-weight: bold;
   text-decoration: none;
-  width: 100%;
   box-sizing: border-box;
   display: block;
 }

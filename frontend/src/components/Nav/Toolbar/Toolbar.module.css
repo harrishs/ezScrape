@@ -21,7 +21,4 @@
   .DeskTopOnly {
     display: none;
   }
-  .navBar {
-    background-color: rgba(0, 0, 0, 0);
-  }
 }

@@ -9,9 +9,7 @@ const navBar = (props) => {
   return (
     <header className={classes.navBar}>
       <Toggle clicked={props.toggleClick} />
-      <div className={classes.DeskTopOnly}>
-        <Logo />
-      </div>
+      <Logo />
       <nav className={classes.DeskTopOnly}>
         <NavItems />
       </nav>
