@@ -29,4 +29,30 @@ const RestaurantSchema = new Schema({
   },
 });
 
+RestaurantSchema.pre("save", function (next) {
+  if (this.isNew || this.isModified("password")) {
+    const document = this;
+    bcrypt.hash(document.password, saltRounds, function (err, hashedPassword) {
+      if (err) {
+        next(err);
+      } else {
+        document.password = hashedPassword;
+        next();
+      }
+    });
+  } else {
+    next();
+  }
+});
+
+RestaurantSchema.methods.isCorrectPassword = function (password, cb) {
+  bcrypt.compare(password, this.password, function (err, same) {
+    if (err) {
+      cb(err);
+    } else {
+      cb(err, same);
+    }
+  });
+};
+
 module.exports = mongoose.model("Restaurant", RestaurantSchema);

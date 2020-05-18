@@ -9,6 +9,10 @@
     <main>
       <div class="edit-restaurant">
         <form action="/restaurant/<%= restaurant._id %>" method="POST">
+          <label for="email">Email</label>
+          <input type="email" name="email" value="<%= restaurant.email %>" />
+          <label for="password">Password</label>
+          <input type="password" name="password" />
           <label for="name">Name</label>
           <input type="text" name="name" value="<%= restaurant.name %>" />
           <label for="type">Categories</label>
@@ -28,6 +32,10 @@
           <button class="btn" type="submit">
             Submit changes
           </button>
+        </form>
+        <form action="/delete-restaurant" method="POST">
+          <button type="submit" class="btn">Delete</button>
+          <input type="hidden" value="<%= restaurant._id %>" name="id" />
         </form>
       </div>
     </main>

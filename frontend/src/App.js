@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import Auth from "./components/Auth/Auth";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   // const [error, setError] = useState(null);
@@ -50,11 +51,19 @@ function App() {
 
   return (
     <div className="App">
-      <Auth
+      {/* <Auth
         url="http://localhost:3030/users/add-user"
         type="signup"
         method="POST"
       />
+      <Auth
+        url="http://localhost:3030/users/auth-user"
+        type="login"
+        method="POST"
+      /> */}
+      <Layout>
+        <p>test</p>
+      </Layout>
     </div>
   );
 }

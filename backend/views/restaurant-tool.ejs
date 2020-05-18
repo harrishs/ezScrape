@@ -22,10 +22,6 @@
           <a href="/restaurant/<%= restaurant._id %>"
             ><button class="btn">Edit</button></a
           >
-          <form action="/delete-restaurant" method="POST">
-            <button type="submit" class="btn">Delete</button>
-            <input type="hidden" value="<%= restaurant._id %>" name="id" />
-          </form>
         </div>
         <% }); %>
       </div>

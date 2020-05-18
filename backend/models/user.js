@@ -33,7 +33,7 @@ userSchema.pre("save", function (next) {
 });
 
 userSchema.methods.isCorrectPassword = function (password, cb) {
-  bcrypt.comparte(password, this.password, function (err, same) {
+  bcrypt.compare(password, this.password, function (err, same) {
     if (err) {
       cb(err);
     } else {
