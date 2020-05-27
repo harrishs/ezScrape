@@ -12,28 +12,20 @@ app.use(cors());
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const token = process.env.TOKEN_KEY;
-const apiRoutes = require("./routes/api");
-const shopRoutes = require("./routes/shop");
-const userRoutes = require("./routes/user");
+const scraperRoutes = require("./routes/scraper");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api", apiRoutes);
-app.use("/users", userRoutes);
-app.use(shopRoutes);
+app.use("/api", scraperRoutes);
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-ekpkv.mongodb.net/directory?retryWrites=true&w=majority`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    }
-  )
+  .connect(process.env.MONGO, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true,
+  })
   .then((result) => {
     app.listen(3030);
     console.log("connected");

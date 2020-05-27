@@ -1,24 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
-const data = (props) => {
-  return (
+const Data = (props) => {
+  // const [url, setUrl] = useState("");
+  // const [selector, setSelector] = useState("");
+  http: return (
     <div className="holder">
-      <form action={props.url} method="POST">
-        <input type="text" name="name" placeholder="Name" />
+      <form action="http://localhost:3030/api" method="POST">
         <input
           type="text"
-          name="type"
-          placeholder="Use commas to seperate types"
+          name="url"
+          placeholder="url"
+          //onChange={(e) => setUrl(e.target.value)}
         />
-        <input type="text" name="description" placeholder="Description" />
-        <input type="text" name="imageUrl" placeholder="Image Url" />
+        <input
+          type="text"
+          name="selector"
+          placeholder="Enter selector based on instructions"
+          //onChange={(e) => setSelector(e.target.value)}
+        />
         <button className="hold" type="submit">
           Placeholder
         </button>
-        <input type="hidden" name="id" value={props.id} />
       </form>
     </div>
   );
 };
 
-export default data;
+export default Data;

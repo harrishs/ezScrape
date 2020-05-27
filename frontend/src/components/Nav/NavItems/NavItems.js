@@ -5,8 +5,7 @@ import NavItem from "./NavItem/NavItem";
 
 const navItems = () => (
   <ul className={classes.NavItems}>
-    <NavItem link="/login">Login</NavItem>
-    <NavItem link="/signup">Sign Up</NavItem>
+    <NavItem link="/input">Add Entries</NavItem>
   </ul>
 );
 
