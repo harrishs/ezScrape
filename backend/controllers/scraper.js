@@ -29,8 +29,13 @@ exports.getScraped = (req, res, next) => {
           const data = $(entry.selector);
           const out = data.text();
           scrapedData = out;
-          console.log(scrapedData);
-          res.status(200).json({ data: scrapedData });
+          res
+            .status(200)
+            .json({
+              data: scrapedData,
+              url: entry.url,
+              selector: entry.selector,
+            });
         } else {
           res.status(500).json({ error: err.message });
         }

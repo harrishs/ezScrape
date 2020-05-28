@@ -15,6 +15,7 @@ function App() {
           <Route path="/input" exact component={Data} />
           <Route path="/" exact component={Landing} />
           <Route path="/url/:id" exact component={Card} />
+          <Route path="/url/edit/:id" exact component={Data} />
         </Switch>
       </Layout>
     </div>

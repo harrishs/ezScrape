@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
+import classes from "./Card.module.css";
 
 const Card = (props) => {
   const param = props.match.params.id;
@@ -7,15 +10,16 @@ const Card = (props) => {
   useEffect(() => {
     axios
       .get(`http://localhost:3030/api/${param}`)
-      .then((data) => setData(data.data))
+      .then((res) => setData(res.data))
       .catch((err) => {
         throw err;
       });
   }, [param]);
-  const scraped = JSON.stringify(data.data);
+  const scraped = data.data;
   return (
-    <div className="card" style={{ marginTop: "200px" }}>
-      <p>{scraped}</p>
+    <div className={classes.Card}>
+      {scraped}
+      <Link to={`/url/edit/${param}`}>Edit</Link>
     </div>
   );
 };
