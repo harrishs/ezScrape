@@ -19,15 +19,18 @@ exports.postScraper = (req, res, next) => {
 };
 
 exports.getScraped = (req, res, next) => {
+  let scrapedData;
   const id = req.params.id;
   Scraper.findById(id)
-    .then((res) => {
-      request(res.url, (err, response, html) => {
+    .then((entry) => {
+      request(entry.url, (err, response, html) => {
         if (!err && response.statusCode == 200) {
           const $ = cheerio.load(html);
-          const data = $(res.selector);
+          const data = $(entry.selector);
           const out = data.text();
-          console.log(out);
+          scrapedData = out;
+          console.log(scrapedData);
+          res.status(200).json({ data: scrapedData });
         } else {
           res.status(500).json({ error: err.message });
         }

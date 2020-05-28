@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Landing.module.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Landing = (props) => {
   const [entries, setEntries] = useState(null);
@@ -20,7 +21,8 @@ const Landing = (props) => {
         <div key={e._id}>
           <h1>{e.url}</h1>
           <h1>{e.selector}</h1>
-          <h1>{e._id}</h1>
+          <Link to={`/url/${e._id}`}>View Data</Link>
+          {/* <h1>{e._id}</h1> */}
         </div>
       );
     });
