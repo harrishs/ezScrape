@@ -29,17 +29,32 @@ exports.getScraped = (req, res, next) => {
           const data = $(entry.selector);
           const out = data.text();
           scrapedData = out;
-          res
-            .status(200)
-            .json({
-              data: scrapedData,
-              url: entry.url,
-              selector: entry.selector,
-            });
+          res.status(200).json({
+            data: scrapedData,
+            url: entry.url,
+            selector: entry.selector,
+          });
         } else {
           res.status(500).json({ error: err.message });
         }
       });
     })
+    .catch((err) => res.status(500).json({ error: err.message }));
+};
+
+exports.postEditScrape = (req, res, next) => {
+  const id = req.params.id;
+  const { url, selector } = req.body;
+  Scraper.findByIdAndUpdate(id, { url: url, selector: selector })
+    .then((entry) => {
+      res.status(200).json({ data: entry });
+    })
+    .catch((err) => res.status(500).json({ error: err.message }));
+};
+
+exports.postDeleteScrape = (req, res, next) => {
+  const id = req.params.id;
+  Scraper.findByIdAndDelete(id)
+    .then((entry) => res.status(200).json({ data: "deleted" }))
     .catch((err) => res.status(500).json({ error: err.message }));
 };
