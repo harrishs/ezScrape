@@ -5,7 +5,7 @@ import NavItem from "./NavItem/NavItem";
 
 const navItems = () => (
   <ul className={classes.NavItems}>
-    <NavItem link="/input">Add Entries</NavItem>
+    <NavItem link="/add">Add Entries</NavItem>
   </ul>
 );
 

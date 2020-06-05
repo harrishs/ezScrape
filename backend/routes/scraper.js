@@ -7,7 +7,7 @@ const scraperController = require("../controllers/scraper");
 router.get("/", scraperController.getEntries);
 
 //Add url entries to scraper
-router.post("/", scraperController.postScraper);
+router.post("/add", scraperController.postScraper);
 
 //Get information about url
 router.get("/:id", scraperController.getScraped);
